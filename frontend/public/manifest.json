@@ -1,0 +1,8 @@
+{
+  "short_name": "FormBuilder",
+  "name": "FormBuilder - Dynamic Airtable Forms",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0d9fdb",
+  "background_color": "#f8f9fa"
+}
