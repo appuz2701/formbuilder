@@ -1,4 +1,4 @@
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Navigate, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -27,60 +27,81 @@ function App() {
         <FormProvider>
           <div className="App min-h-screen bg-gray-50">
             <Routes>
+              {/* Public Routes */}
               <Route path="/" element={<Landing />} />
               <Route path="/form/:id" element={<FormViewer />} />
-              <Route path="/embed/:id" element={<FormViewer embedded={true} />} />
+              <Route path="/embed/:id" element={<FormViewer embedded />} />
               <Route path="/auth/callback" element={<AuthCallback />} />
               <Route path="/auth/error" element={<AuthError />} />
 
-              <Route path="/dashboard" element={
-             
-                  <Layout>
-                    <Dashboard />
-                  </Layout>
-            
-              } />
+              {/* Protected Routes */}
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <Dashboard />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
 
-              <Route path="/forms/new" element={
-              
-                  <Layout>
-                    <FormBuilder />
-                  </Layout>
-            
-              } />
+              <Route
+                path="/forms/new"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <FormBuilder />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
 
-              <Route path="/forms/:id/edit" element={
-               
-                  <Layout>
-                    <FormEditor />
-                  </Layout>
-               
-              } />
+              <Route
+                path="/forms/:id/edit"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <FormEditor />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
 
-              <Route path="/forms/:id/analytics" element={
-               
-                  <Layout>
-                    <FormAnalytics />
-                  </Layout>
-              
-              } />
+              <Route
+                path="/forms/:id/analytics"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <FormAnalytics />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
 
-              <Route path="/forms/:id/responses" element={
-              
-                  <Layout>
-                    <FormResponses />
-                  </Layout>
-      
-              } />
+              <Route
+                path="/forms/:id/responses"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <FormResponses />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
 
-              <Route path="/settings" element={
-               
-                  <Layout>
-                    <Settings />
-                  </Layout>
-              
-              } />
+              <Route
+                path="/settings"
+                element={
+                  <ProtectedRoute>
+                    <Layout>
+                      <Settings />
+                    </Layout>
+                  </ProtectedRoute>
+                }
+              />
 
+              {/* Redirect & 404 */}
               <Route path="/forms" element={<Navigate to="/dashboard" replace />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
@@ -106,3 +127,4 @@ function App() {
 }
 
 export default App;
+
